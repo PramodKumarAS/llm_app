@@ -1,0 +1,5 @@
+Employees receive 20 paid leave days annually.
+
+Unused leave may be carried forward up to 5 days.
+
+Manager approval is required for leave longer than 3 days.
