@@ -47,12 +47,12 @@ if user_input:
         }
     )
 
-    # Agent handles request
-    response = ask_agent(user_input)
+    result = ask_agent(user_input)
 
-    # Display assistant response
+    response = result["response"]
+
     with st.chat_message("assistant"):
-        st.write(response)
+      st.write(response)
 
     st.session_state.messages.append(
         {
