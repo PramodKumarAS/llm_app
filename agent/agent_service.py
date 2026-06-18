@@ -22,8 +22,8 @@ def ask_agent(question):
         )
 
     elif tool == "rag":
-
-        response = ask_rag(question)
+        return "RAG temporarily disabled"
+        # response = ask_rag(question)
 
     elif tool == "calculator":
 
