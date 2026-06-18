@@ -1,6 +1,6 @@
 from agent.router import choose_tool
 from agent.tools import get_weather, calculate, get_stock_price
-from rag.rag_service import ask_rag
+# from rag.rag_service import ask_rag
 
 
 def ask_agent(question):
