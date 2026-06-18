@@ -20,6 +20,13 @@ Available tools:
 4. stock
    - Stock prices
 
+5. chat
+   - General conversation
+   - Greetings
+   - Jokes
+   - Questions that do not require weather, stock,
+     calculator, or company policy information  
+
 Return ONLY valid JSON.
 
 Examples:
@@ -38,6 +45,15 @@ Question: Calculate (100 + 50) / 5
 
 Question: What is Apple's stock price?
 {{"tool":"stock","symbol":"AAPL"}}
+
+Question: Hello
+{{"tool":"chat"}}
+
+Question: Tell me a joke
+{{"tool":"chat"}}
+
+Question: Who are you?
+{{"tool":"chat"}}
 
 Question:
 {question}

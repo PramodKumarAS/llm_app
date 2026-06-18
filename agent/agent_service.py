@@ -1,7 +1,7 @@
 from agent.router import choose_tool
 from agent.tools import get_weather, calculate, get_stock_price
-# from rag.rag_service import ask_rag
-
+from rag.rag_service import ask_rag
+from chat.chat_service import ask_chat
 
 def ask_agent(question):
 
@@ -22,11 +22,9 @@ def ask_agent(question):
         )
 
     elif tool == "rag":
-        return "RAG temporarily disabled"
-        # response = ask_rag(question)
+        response = ask_rag(question)
 
     elif tool == "calculator":
-
         response = str(
             calculate(
                 decision["expression"]
@@ -34,20 +32,31 @@ def ask_agent(question):
         )
 
     elif tool == "stock":
+     try:
 
         stock = get_stock_price(
             decision["symbol"]
         )
 
+        if stock["price"] == "temporarily unavailable":
+            response = (
+                f"Unable to retrieve {stock['symbol']} "
+                f"stock price at the moment."
+            )
+        else:
+            response = (
+                f"{stock['symbol']} is trading at "
+                f"${stock['price']}"
+            )
+            
+     except Exception:
         response = (
-            f"{stock['symbol']} "
-            f"is trading at "
-            f"${stock['price']}"
-        )
+            "Unable to retrieve stock price "
+            "at the moment."
+        )            
 
     else:
-
-        response = "Unable to determine tool."
+        response = ask_chat(question)
 
     return {
         "tool_used": tool,

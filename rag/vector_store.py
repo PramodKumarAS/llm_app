@@ -1,6 +1,10 @@
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_openai import OpenAIEmbeddings
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DOCUMENTS_PATH = "rag/documents"
 DB_PATH = "rag/chroma_db"
@@ -19,10 +23,9 @@ def create_vector_store():
     print(f"Loaded {len(documents)} documents")
 
     # Create embeddings model
-    embeddings = HuggingFaceEmbeddings(
-        model_name="all-MiniLM-L6-v2"
+    embeddings = OpenAIEmbeddings(
+        model="text-embedding-3-small",        
     )
-
     # Create vector database
     vector_db = Chroma.from_documents(
         documents=documents,
